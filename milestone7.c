@@ -3,9 +3,9 @@
 #pragma config FNOSC = LPFRC
 
 // pwm periods 
-#define constant 10000
-#define slow 5000 // for slow turn
-#define hard 2500 // for hard turn
+#define CONSTANT 10000
+#define SLOW 5000 // for slow turn
+#define HARD 2500 // for hard turn
 
 #define CL _RB2
 #define LL _RA2
@@ -53,9 +53,9 @@ int main(void) {
   while(1){
     switch (state){
       case FWD:
-        OC2RS = constant;
+        OC2RS = CONSTANT;
         OC2R = OC2RS / 2;
-        OC3RS = constant;
+        OC3RS = CONSTANT;
         OC3R = OC3RS / 2;
         if (CL >= THRESHOLD && LL >= THRESHOLD && RL < THRESHOLD){
           state = L;
@@ -71,27 +71,27 @@ int main(void) {
         }
         break;
       case L:
-        OC2RS = constant;
+        OC2RS = CONSTANT;
         OC2R = OC2RS / 2;
-        OC3RS = slow;
+        OC3RS = SLOW;
         OC3R = OC3RS / 2;
         if (CL>= THRESHOLD && LL < THRESHOLD && RL < THRESHOLD){
           state = FWD;
         }
         break;
       case R:
-        OC2RS = slow;
+        OC2RS = SLOW;
         OC2R = OC1RS / 2;
-        OC3RS = constant;
+        OC3RS = CONSTANT;
         OC3R = OC2RS / 2;
         if (CL>= THRESHOLD && LL < THRESHOLD && RL < THRESHOLD){
           state = FWD;
         }
         break;
       case HL:
-        OC2RS = constant;
+        OC2RS = CONSTANT;
         OC2R = OC2RS / 2;
-        OC3RS = hard;
+        OC3RS = HARD;
         OC3R = OC3RS / 2;
         if (CL>= THRESHOLD && LL < THRESHOLD && RL < THRESHOLD){
           state = FWD;
@@ -101,9 +101,9 @@ int main(void) {
         }
         break;
       case HR:
-        OC2RS = hard;
+        OC2RS = HARD;
         OC2R = OC2RS / 2;
-        OC3RS = constant;
+        OC3RS = CONSTANT;
         OC3R = OC3RS / 2;
         if (CL>= THRESHOLD && LL < THRESHOLD && RL < THRESHOLD){
           state = FWD;
