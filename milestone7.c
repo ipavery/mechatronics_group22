@@ -7,6 +7,8 @@
 #define slow = 5000; // for slow turn
 #define hard = 2500; // for hard turn
 
+#define THRESHOLD 2048
+
 enum {FWD, L, R, HL, HR} State;
 
 // pin 2, RA0, DO, Left Motor Direction
@@ -59,10 +61,10 @@ int main(void) {
         OC2R = OC2RS / 2;
         OC3RS = constant;
         OC3R = OC3RS / 2;
-        if (LL == ON){
+        if (LL >= THRESHOLD){
           state = L;
         }
-        if (RL == ON){
+        if (RL >= THRESHOLD){
           state = R;
         }
         break;
@@ -71,7 +73,7 @@ int main(void) {
         OC2R = OC2RS / 2;
         OC3RS = slow;
         OC3R = OC3RS / 2;
-        if (LL == OFF){
+        if (LL <= THRESHOLD){
           state = FWD;
         }
         break;
@@ -80,7 +82,7 @@ int main(void) {
         OC2R = OC1RS / 2;
         OC3RS = constant;
         OC3R = OC2RS / 2;
-        if (RL == OFF){
+        if (RL <= THRESHOLD){
           state = FWD;
         }
         break;
