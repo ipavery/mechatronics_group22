@@ -7,6 +7,10 @@
 #define slow = 5000; // for slow turn
 #define hard = 2500; // for hard turn
 
+#define CL _RB2
+#define LL _RA2
+#define RL _RA3
+
 #define THRESHOLD 2048
 
 enum {FWD, L, R, HL, HR} State;
