@@ -53,11 +53,17 @@ int main(void) {
         OC2R = OC2RS / 2;
         OC3RS = constant;
         OC3R = OC3RS / 2;
-        if (LL >= THRESHOLD){
+        if (CL >= THRESHOLD && LL >= THRESHOLD && RL < THRESHOLD){
           state = L;
         }
-        if (RL >= THRESHOLD){
+        if (CL >= THRESHOLD && LL < THRESHOLD && RL >= THRESHOLD){
           state = R;
+        }
+        if (CL < THRESHOLD && LL >= THRESHOLD){
+          state = HL;
+        }
+        if (CL < THRESHOLD && RL >= THRESHOLD){
+          state = HR;
         }
         break;
       case L:
@@ -65,7 +71,7 @@ int main(void) {
         OC2R = OC2RS / 2;
         OC3RS = slow;
         OC3R = OC3RS / 2;
-        if (LL <= THRESHOLD){
+        if (CL>= THRESHOLD && LL < THRESHOLD && RL < THRESHOLD){
           state = FWD;
         }
         break;
@@ -74,8 +80,32 @@ int main(void) {
         OC2R = OC1RS / 2;
         OC3RS = constant;
         OC3R = OC2RS / 2;
-        if (RL <= THRESHOLD){
+        if (CL>= THRESHOLD && LL < THRESHOLD && RL < THRESHOLD){
           state = FWD;
+        }
+        break;
+      case HL:
+        OC2RS = constant;
+        OC2R = OC2RS / 2;
+        OC3RS = hard;
+        OC3R = OC3RS / 2;
+        if (CL>= THRESHOLD && LL < THRESHOLD && RL < THRESHOLD){
+          state = FWD;
+        }
+        if (CL >= THRESHOLD && LL >= THRESHOLD && RL < THRESHOLD){
+          state = L;
+        }
+        break;
+      case HR:
+        OC2RS = hard;
+        OC2R = OC2RS / 2;
+        OC3RS = constant;
+        OC3R = OC3RS / 2;
+        if (CL>= THRESHOLD && LL < THRESHOLD && RL < THRESHOLD){
+          state = FWD;
+        }
+        if (CL >= THRESHOLD && LL < THRESHOLD && RL >= THRESHOLD){
+          state = R;
         }
         break;
     } // end switch state
