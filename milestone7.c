@@ -21,18 +21,18 @@ enum {FWD, L, R, HL, HR} State;
 
 int main(void) {
 
-  _RCDIV = 0b001;
+  _RCDIV = 0;
   State state = FWD;
-
-  OC1CON2bits.SYNCSEL = 0x1F;
-  OC1CON1bits.OCTSEL = 0b111;
-  OC1CON1bits.OCM = 0b110;
-  OC1CON2bits.OCTRIG = 0;
 
   OC2CON2bits.SYNCSEL = 0x1F;
   OC2CON1bits.OCTSEL = 0b111;
   OC2CON1bits.OCM = 0b110;
   OC2CON2bits.OCTRIG = 0;
+
+  OC3CON2bits.SYNCSEL = 0x1F;
+  OC3CON1bits.OCTSEL = 0b111;
+  OC3CON1bits.OCM = 0b110;
+  OC3CON2bits.OCTRIG = 0;
 
   ANSA = 0;
   LATA = 0;
