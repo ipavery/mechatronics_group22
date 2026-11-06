@@ -11,16 +11,6 @@
 
 enum {FWD, L, R, HL, HR} State;
 
-// pin 2, RA0, DO, Left Motor Direction
-// pin 3, RA1, DO, Right Motor Direction
-
-// pin 4, OC2, Left Stepper PWM
-// pin 5, OC3, Right Stepper PWM
-
-// pin 6, RB2, DI, Center Line QRD
-// pin 7, RA2, DI, Left Line QRD
-// pin 8, RA3, DI, Right Line QRD
-
 int main(void) {
 
   _RCDIV = 0;
@@ -41,6 +31,8 @@ int main(void) {
   // set pin 2, 3
   _TRISA0 = 1;
   _ANSA0 = 1;
+  _TRISA1 = 1;
+  _ANSA1 = 1;
   // set pins 6,7,8 as digital inputs
   _TRISB2 = 1; 
   _ANSB2 = 0;  
