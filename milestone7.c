@@ -3,9 +3,9 @@
 #pragma config FNOSC = LPFRC
 
 // pwm periods 
-#define constant = 10000;  
-#define slow = 5000; // for slow turn
-#define hard = 2500; // for hard turn
+#define constant 10000
+#define slow 5000 // for slow turn
+#define hard 2500 // for hard turn
 
 #define CL _RB2
 #define LL _RA2
