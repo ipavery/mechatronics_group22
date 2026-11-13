@@ -10,10 +10,10 @@
 #define WR _RB13 //wall right
 
 #define STEPS 457 // number of steps to turn 90 deg 
+#define THRESHOLD 1000
 
 int steps = 0;
-void _attribute_((interrupt, no_auto_psv))
-_OC2Interrupt(void){
+void _attribute_((interrupt, no_auto_psv)) _OC2Interrupt(void){
   _OC2IF = 0;
   steps++;
 }
@@ -60,7 +60,7 @@ int main(void) {
   OC3R = OC3RS / 2;
 
   while(1){
-    if (WF && WL){
+    if (WF >= THRESHOLD && WL >= THRESHOLD){
       steps = 0;
       // turn right
       while (steps < STEPS) {
@@ -70,7 +70,7 @@ int main(void) {
         OC3R = OC3RS / 2;
       }
     } 
-    if (WF && WR){
+    if (WF >= THRESHOLD && WR >= THRESHOLD){
       steps = 0;
       // turn left
       while (steps < STEPS) {
