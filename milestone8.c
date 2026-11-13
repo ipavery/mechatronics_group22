@@ -9,7 +9,7 @@
 #define WL _RB14 //wall left
 #define WR _RB13 //wall right
 
-#define STEPS 2000 // number of steps to turn 90 deg 
+#define STEPS 457 // number of steps to turn 90 deg 
 
 int steps = 0;
 void _attribute_((interrupt, no_auto_psv))
