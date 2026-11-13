@@ -13,7 +13,7 @@
 #define THRESHOLD 1000
 
 int steps = 0;
-void _attribute_((interrupt, no_auto_psv)) _OC2Interrupt(void){
+void __attribute__((interrupt, no_auto_psv)) _OC2Interrupt(void){
   _OC2IF = 0;
   steps++;
 }
