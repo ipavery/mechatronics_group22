@@ -12,8 +12,8 @@
 #define WR ADC1BUF11 //wall right
 
 #define STEPS_90DEG 510 // number of steps to turn 90 deg 
-#define THRESHOLD 525
-#define FRONT_THRESHOLD 500
+#define THRESHOLD 600
+#define FRONT_THRESHOLD 600
 
 int OC3_steps = 0;
 int OC2_steps = 0;
@@ -87,6 +87,11 @@ int main(void) {
   OC2CON1bits.OCTSEL = 0b111;
   OC2CON1bits.OCM = 0b110;
   OC2CON2bits.OCTRIG = 0;
+  
+  OC1CON2bits.SYNCSEL = 0x1F;
+  OC1CON1bits.OCTSEL = 0b111;
+  OC1CON1bits.OCM = 0b000;
+  OC1CON2bits.OCTRIG = 0;
 
   _OC2IF = 0;
   _OC2IP = 4;
@@ -207,4 +212,3 @@ int main(void) {
   } // end while loop
   return 0;
 } // end main loop
-
